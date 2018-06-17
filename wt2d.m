@@ -1,10 +1,13 @@
 %Christian Lascsak
 %01363742
 
-function [Dec_img] = wt2d(img, Lo_D, Hi_D, nlevels, count = 0)
+function [Dec_img] = wt2d(img, Lo_D, Hi_D, nlevels, count)
 
   [rows, cols] = size(img);
   Dec_img = zeros(rows,cols);
+  if(nargin < 5)
+    count = 0;
+  end
     %iterate over rows and save the solution of dwt in new matrix
     for i = 1:rows;
       r = img(i,1:end);
