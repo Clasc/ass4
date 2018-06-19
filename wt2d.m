@@ -1,13 +1,10 @@
 %Christian Lascsak
 %01363742
 
-function [Dec_img] = wt2d(img, Lo_D, Hi_D, nlevels, count)
+function [Dec_img] = wt2d(img, Lo_D, Hi_D, nlevels)
 
   [rows, cols] = size(img);
   Dec_img = zeros(rows,cols);
-  if(nargin < 5)
-    count = 0;
-  end
     %iterate over rows and save the solution of dwt in new matrix
     for i = 1:rows;
       r = img(i,1:end);
@@ -25,10 +22,11 @@ function [Dec_img] = wt2d(img, Lo_D, Hi_D, nlevels, count)
     end
   %Lo_img is the upper left part of the image.
   Lo_img = Dec_img(1:floor(end/2),1:floor(end/2));
-  count = count + 1;
-  if(count < nlevels)
+  nlevels = nlevels-1;
+  if(nlevels > 0)
+    
     %only replace the LL component of the image (upper left) and repeat this process nlevel times
-    Dec_img(floor(1:end/2),floor(1:end/2)) = wt2d(Lo_img, Lo_D, Hi_D, nlevels, count);
+    Dec_img(floor(1:end/2),floor(1:end/2)) = wt2d(Lo_img, Lo_D, Hi_D, nlevels);
   end
   
 end;

@@ -11,7 +11,7 @@ generateGauss(5);
 
 %Bsp2
 [Lo_D,Hi_D] = getHaar();
-nlevels = 4;
+nlevels = 2;
 img = imread('images/lena.png');
 y2d = wt2d(img, Lo_D, Hi_D, nlevels);
 figure,imshow(y2d, []), title('Decompostition of the Image');
