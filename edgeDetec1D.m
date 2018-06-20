@@ -8,9 +8,10 @@ function [retval] = edgeDetec1D ()
    signal(600:700) = 1;
    %add the noise
    noise = randn(1,1024) * 0.2;
+   gauss = generateGauss(5);
+   signal = conv(signal, gauss, 'same');
    signal = signal.+noise;
    
-   gauss = generateGauss(5);
    figure, plot(signal),title("Original Signal with noise");
    [low,high] = deComp(signal, Lo_dec,Hi_dec,6);
    

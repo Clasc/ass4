@@ -23,10 +23,10 @@ function [Dec_img] = wt2d(img, Lo_D, Hi_D, nlevels)
   %Lo_img is the upper left part of the image.
   Lo_img = Dec_img(1:floor(end/2),1:floor(end/2));
   nlevels = nlevels-1;
+  
   if(nlevels > 0)
-    
     %only replace the LL component of the image (upper left) and repeat this process nlevel times
     Dec_img(floor(1:end/2),floor(1:end/2)) = wt2d(Lo_img, Lo_D, Hi_D, nlevels);
   end
   
-end;
+end
