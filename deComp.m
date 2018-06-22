@@ -2,7 +2,7 @@
 %a01363742
 
 
-function [low,high] = deComp (signal, decLowP, decHighP, steps)
+function [low,high] = deComp (signal, decLowP, decHighP, steps,threshold)
   oldLow = signal; 
   k=1;
   figure;
@@ -18,6 +18,7 @@ function [low,high] = deComp (signal, decLowP, decHighP, steps)
     upSampled(2:2:end) = high;
     
     edges = oldHigh.*upSampled;
+    edges(edges < threshold)  = 0;
     
     subplot(6,3,k), plot(oldLow),title("Approximation");
     k = k+1;

@@ -1,4 +1,4 @@
-%%Christian Lascsak
+%Christian Lascsak
 
 function [retval] = edgeDetec1D ()
    [Lo_dec,Hi_dec] = getHaar();
@@ -12,7 +12,8 @@ function [retval] = edgeDetec1D ()
    signal = conv(signal, gauss, 'same');
    signal = signal.+noise;
    
+   
    figure, plot(signal),title("Original Signal with noise");
-   [low,high] = deComp(signal, Lo_dec,Hi_dec,6);
+   [low,high] = deComp(signal, Lo_dec,Hi_dec,6, 0.5);
    
 end

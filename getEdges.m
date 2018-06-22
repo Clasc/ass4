@@ -1,12 +1,19 @@
 %Christian Lascsak 
 %01363742
 
-function [edges] = getEdges (img, Lo_D, Hi_D)
+function [edges] = getEdges (img, Lo_D, Hi_D, threshold)
   
   dec_Img = decomposeImage(img, Lo_D, Hi_D);
-  HH1 = dec_Img(floor(end/2) : end, floor(end/2) : end); 
+ 
   LL = dec_Img(1 : floor(end/2), 1 : floor(end/2));
-  HH2 = LL(floor(end/2) : end, floor(end/2) : end);
-  downSampled = HH1(1:2:end,1:2:end);
-  edges = downSampled.*HH2;
+  LH1 = dec_Img(end/2+1:end, 1 : end/2);
+  HL1 = dec_Img(1:end/2, end/2+1:end);
+  LH2 = LL(end/2+1:end, 1 : end/2);
+  HL2 = LL(1:end/2, end/2+1:end);
+  LH1 = LH1(1:2:end,1:2:end);
+  HL1 = HL1(1:2:end,1:2:end);
+  
+  edges = sqrt((LH1.*LH2).^2 + (HL1.*HL2).^2);
+  edges(edges < threshold)  = 0;
+  
 end
