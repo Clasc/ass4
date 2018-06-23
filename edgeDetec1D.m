@@ -1,6 +1,6 @@
 %Christian Lascsak
 
-function [retval] = edgeDetec1D ()
+function [retval] = edgeDetec1D (threshold)
    [Lo_dec,Hi_dec] = getHaar();
    %Produce the signal
    signal = zeros(1,1024);
@@ -14,6 +14,6 @@ function [retval] = edgeDetec1D ()
    
    
    figure, plot(signal),title("Original Signal with noise");
-   [low,high] = deComp(signal, Lo_dec,Hi_dec,6, 0.5);
+   [low,high] = deComp(signal, Lo_dec,Hi_dec,6, threshold);
    
 end
