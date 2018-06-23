@@ -10,7 +10,7 @@ edgeDetec1D(0.8);
 
 %Bsp2
 [Lo_D,Hi_D] = getHaar();
-nlevels = 2;
+nlevels = 4;
 img = imread('images/lena.png');
 figure;
 y2d = wt2d(img, Lo_D, Hi_D, nlevels);
